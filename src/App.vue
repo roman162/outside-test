@@ -1,28 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <start
+      v-if="!isShowPopup"
+      @showPopup="showPopup"
+    />
+    <popup
+      v-else
+      @showPopup="showPopup"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import popup from './components/popup.vue'
+import start from './components/start.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    start,
+    popup
+  },
+  data () {
+    return {
+      isShowPopup: false
+    }
+  },
+  methods: {
+    showPopup (value) {
+      this.isShowPopup = value
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  
 </style>
